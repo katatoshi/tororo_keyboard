@@ -57,7 +57,7 @@ module left_keyboard() {
                     left_top_plate();
                     if (!only_plate) {
                         translate([0, 0, -5]) {
-                            left_pcb();
+                            left_pcb(!no_pcb);
                         }
                     }
                     translate([0, 0, -plate_h - 6]) {
@@ -332,29 +332,52 @@ module screw_hole() {
     }
 }
 
-module left_pcb() {
+module left_pcb(show_pcb = true, show_parts = true) {
     union() {
-        if (!no_pcb) {
+        if (show_pcb) {
             difference() {
-                translate([plate_padding_x_l, plate_padding_y_t, -pcb_h]) {
-                    translate_from_origin_to_plate_left_bottom() {
-                        cube([plate_w_x_no_padding, plate_w_y_no_padding, pcb_h], center = false);
+                union() {
+                    difference() {
+                        translate([plate_padding_x_l, plate_padding_y_t, -pcb_h]) {
+                            translate_from_origin_to_plate_left_bottom() {
+                                cube([plate_w_x_no_padding, plate_w_y_no_padding, pcb_h], center = false);
+                            }
+                        }
+                        unit_cube(7 * w_unit, y1 + w_unit);
+                        unit_cube(7 * w_unit, y1);
+                        unit_cube((1.5 + 5) * w_unit, y2);
+                        unit_cube((1.75 + 5) * w_unit, y3);
+                        translate([0, 0, spacer_h]) {
+                            spacer_holes();
+                        }
+                        translate([0, -plate_padding_y_t - 5 * w_unit - plate_padding_y_b, -pcb_h]) {
+                            translate_from_origin_to_plate_left_top() {
+                                cube([plate_padding_x_l + 1.5 * w_unit, w_unit + plate_padding_y_b, pcb_h], center = false);
+                            }
+                        }
+                    }
+                    translate([0, -plate_padding_y_t - pro_micro_hole_w_y / 2 - pro_micro_w_y / 2, -pcb_h]) {
+                        translate_from_origin_to_plate_left_top() {
+                            cube([pro_micro_w_x, pro_micro_w_y, pcb_h], center = false);
+                        }
+                    }
+                    translate([trrs_hole_x + trrs_hole_w_x / 2 - trrs_w_x / 2, -trrs_w_y, -pcb_h]) {
+                        translate_from_origin_to_plate_left_top() {
+                            cube([trrs_w_x, trrs_w_y, pcb_h], center = false);
+                        }
                     }
                 }
-                unit_cube(7 * w_unit, y1 + w_unit);
-                unit_cube(7 * w_unit, y1);
-                unit_cube((1.5 + 5) * w_unit, y2);
-                unit_cube((1.75 + 5) * w_unit, y3);
-                translate([0, 0, spacer_h]) {
-                    spacer_holes();
-                }
+                key_holes();
+                left_reset_hole(pcb_h);
             }
         }
-        translate([0, 0, -pcb_h]) {
-            left_trrs();
-        }
-        translate([0, 0, -pcb_h]) {
-            left_pro_micro();
+        if (show_parts) {
+            translate([0, 0, -pcb_h]) {
+                left_trrs();
+            }
+            translate([0, 0, -pcb_h]) {
+                left_pro_micro();
+            }
         }
     }
 }
@@ -390,11 +413,11 @@ module left_pro_micro_space() {
     }
 }
 
-module left_reset_hole() {
+module left_reset_hole(h = plate_h) {
     union() {
-        translate([trrs_hole_x + trrs_hole_w_x / 2 - trrs_w_x / 2, -reset_hole_w_y - reset_hole_y, -plate_h]) {
+        translate([trrs_hole_x + trrs_hole_w_x / 2 - trrs_w_x / 2, -reset_hole_w_y - reset_hole_y, -h]) {
             translate_from_origin_to_plate_left_top() {
-                cube([reset_hole_w_x, reset_hole_w_y, plate_h], center = false);
+                cube([reset_hole_w_x, reset_hole_w_y, h], center = false);
             }
         }
     }

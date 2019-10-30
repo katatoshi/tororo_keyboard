@@ -3,7 +3,15 @@ use <tororo_keyboard_right.scad>
 
 // arrangeLeftPlateOnA5_1(showFrame = false);
 // arrangeRightPlateOnA5_1(showFrame = false);
-arrangePlateOnA3_1(showFrame = false);
+// arrangePlateOnA3_1(showFrame = false);
+
+leftPCBProjection();
+
+module leftPCBProjection() {
+    projection() {
+        left_pcb(true, false);
+    }
+}
 
 module arrangeLeftPlateOnA5_1(showFrame = false) {
     union() {

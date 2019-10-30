@@ -57,7 +57,7 @@ module right_keyboard() {
                     right_top_plate();
                     if (!only_plate) {
                         translate([0, 0, -5]) {
-                            right_pcb();
+                            right_pcb(!no_pcb);
                         }
                     }
                     translate([0, 0, -plate_h - 6]) {
@@ -334,29 +334,52 @@ module screw_hole() {
     }
 }
 
-module right_pcb() {
+module right_pcb(show_pcb = true, show_parts = true) {
     union() {
-        if (!no_pcb) {
+        if (show_pcb) {
             difference() {
-                translate([plate_padding_x_l - plate_w_x + w_unit / 2 + plate_padding_x_r, plate_padding_y_b - plate_w_y + plate_padding_y_t + w_unit / 2, -pcb_h]) {
-                    cube([plate_w_x_no_padding, plate_w_y_no_padding, pcb_h], center = false);
+                union() {
+                    difference() {
+                        translate([plate_padding_x_l - plate_w_x + w_unit / 2 + plate_padding_x_r, plate_padding_y_b - plate_w_y + plate_padding_y_t + w_unit / 2, -pcb_h]) {
+                            cube([plate_w_x_no_padding, plate_w_y_no_padding, pcb_h], center = false);
+                        }
+                        unit_cube(-8 * w_unit - plate_padding_x_l, y1 + w_unit);
+                        unit_cube(-8 * w_unit - plate_padding_x_l, y1);
+                        unit_cube(-(2.25 + 6) * w_unit - plate_padding_x_l, y3);
+                        unit_cube(-(2.75 + 5) * w_unit - plate_padding_x_l, y4);
+                        unit_cube(-(2.75 + 5) * w_unit - plate_padding_x_l, y5);
+                        unit_cube(-(2.75 + 5) * w_unit - plate_padding_x_l, y5 - w_unit);
+                        translate([0, 0, spacer_h]) {
+                            spacer_holes();
+                        }
+                        translate([-(plate_padding_x_r + 2.5 * w_unit), -plate_padding_y_t - 5 * w_unit - plate_padding_y_b, -pcb_h]) {
+                            translate_from_origin_to_plate_right_top() {
+                                cube([plate_padding_x_r + 2.5 * w_unit, w_unit + plate_padding_y_b, pcb_h], center = false);
+                            }
+                        }
+                    }
+                    translate([-pro_micro_w_x, -plate_padding_y_t - pro_micro_hole_w_y / 2 - pro_micro_w_y / 2, -pcb_h]) {
+                        translate_from_origin_to_plate_right_top() {
+                            cube([pro_micro_w_x, pro_micro_w_y, pcb_h], center = false);
+                        }
+                    }
+                    translate([trrs_hole_x - trrs_w_x - trrs_hole_w_x / 2 + trrs_w_x / 2, -trrs_w_y, -pcb_h]) {
+                        translate_from_origin_to_plate_right_top() {
+                            cube([trrs_w_x, trrs_w_y, pcb_h], center = false);
+                        }
+                    }
                 }
-                unit_cube(-8 * w_unit - plate_padding_x_l, y1 + w_unit);
-                unit_cube(-8 * w_unit - plate_padding_x_l, y1);
-                unit_cube(-(2.25 + 6) * w_unit - plate_padding_x_l, y3);
-                unit_cube(-(2.75 + 5) * w_unit - plate_padding_x_l, y4);
-                unit_cube(-(2.75 + 5) * w_unit - plate_padding_x_l, y5);
-                unit_cube(-(2.75 + 5) * w_unit - plate_padding_x_l, y5 - w_unit);
-                translate([0, 0, spacer_h]) {
-                    spacer_holes();
-                }
+                key_holes();
+                right_reset_hole(pcb_h);
             }
         }
-        translate([0, 0, -pcb_h]) {
-            right_trrs();
-        }
-        translate([0, 0, -pcb_h]) {
-            right_pro_micro();
+        if (show_parts) {
+            translate([0, 0, -pcb_h]) {
+                right_trrs();
+            }
+            translate([0, 0, -pcb_h]) {
+                right_pro_micro();
+            }
         }
     }
 }
@@ -392,11 +415,11 @@ module right_pro_micro_space() {
     }
 }
 
-module right_reset_hole() {
+module right_reset_hole(h = plate_h) {
     union() {
-        translate([trrs_hole_x - reset_hole_w_x - trrs_hole_w_x / 2 + reset_hole_w_x / 2, -reset_hole_w_y - reset_hole_y, -plate_h]) {
+        translate([trrs_hole_x - reset_hole_w_x - trrs_hole_w_x / 2 + reset_hole_w_x / 2, -reset_hole_w_y - reset_hole_y, -h]) {
             translate_from_origin_to_plate_right_top() {
-                cube([reset_hole_w_x, reset_hole_w_y, plate_h], center = false);
+                cube([reset_hole_w_x, reset_hole_w_y, h], center = false);
             }
         }
     }

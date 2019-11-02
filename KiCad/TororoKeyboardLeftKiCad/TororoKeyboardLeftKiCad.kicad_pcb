@@ -2,7 +2,7 @@
 
   (general
     (thickness 1.6)
-    (drawings 268)
+    (drawings 270)
     (tracks 1352)
     (zones 0)
     (modules 97)
@@ -3710,6 +3710,12 @@
       (net 34 "Net-(D29-Pad2)"))
   )
 
+  (gr_text "tororo60 left v0.1.0\nPCB Designed by katatoshi" (at 43.5 95.3 90) (layer B.Mask)
+    (effects (font (size 1.5 1.5) (thickness 0.3)) (justify mirror))
+  )
+  (gr_text "tororo60 v0.1.0\nPCB Designed\nby katatoshi" (at 165 120.6) (layer B.Cu)
+    (effects (font (size 1.5 1.5) (thickness 0.3)) (justify mirror))
+  )
   (gr_line (start 38 38.7) (end 36.5 38.7) (layer Edge.Cuts) (width 0.05))
   (gr_line (start 38 38.1) (end 38 38.7) (layer Edge.Cuts) (width 0.05))
   (gr_line (start 79.5 38.1) (end 171.4 38.1) (layer Edge.Cuts) (width 0.05) (tstamp 5DB9D5FA))

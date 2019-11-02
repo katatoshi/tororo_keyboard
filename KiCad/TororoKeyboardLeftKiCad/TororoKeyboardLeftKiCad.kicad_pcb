@@ -2,7 +2,7 @@
 
   (general
     (thickness 1.6)
-    (drawings 270)
+    (drawings 269)
     (tracks 1352)
     (zones 0)
     (modules 97)
@@ -63,7 +63,7 @@
     (aux_axis_origin 0 0)
     (visible_elements FFFFFF7F)
     (pcbplotparams
-      (layerselection 0x010fc_ffffffff)
+      (layerselection 0x010f0_ffffffff)
       (usegerberextensions false)
       (usegerberattributes false)
       (usegerberadvancedattributes false)
@@ -86,9 +86,9 @@
       (subtractmaskfromsilk false)
       (outputformat 1)
       (mirror false)
-      (drillshape 1)
+      (drillshape 0)
       (scaleselection 1)
-      (outputdirectory ""))
+      (outputdirectory "gerber/"))
   )
 
   (net 0 "")
@@ -3711,9 +3711,6 @@
   )
 
   (gr_text "tororo60 left v0.1.0\nPCB Designed by katatoshi" (at 43.5 95.3 90) (layer B.Mask)
-    (effects (font (size 1.5 1.5) (thickness 0.3)) (justify mirror))
-  )
-  (gr_text "tororo60 v0.1.0\nPCB Designed\nby katatoshi" (at 165 120.6) (layer B.Cu)
     (effects (font (size 1.5 1.5) (thickness 0.3)) (justify mirror))
   )
   (gr_line (start 38 38.7) (end 36.5 38.7) (layer Edge.Cuts) (width 0.05))

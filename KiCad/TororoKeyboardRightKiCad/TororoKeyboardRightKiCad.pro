@@ -1,4 +1,4 @@
-update=2019年10月29日 火曜日 23:57:17
+update=2019年11月03日 日曜日 02:48:19
 version=1
 last_client=kicad
 [general]
@@ -15,7 +15,7 @@ LibDir=
 [pcbnew]
 version=1
 PageLayoutDescrFile=
-LastNetListRead=TororoKeyboardLeftKiCad.net
+LastNetListRead=TororoKeyboardRightKiCad.net
 CopperLayerCount=2
 BoardThickness=1.6
 AllowMicroVias=0

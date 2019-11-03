@@ -1532,7 +1532,7 @@ U 1 1 5DB6E93A
 P 13000 4350
 F 0 "U1" H 13000 5387 60  0000 C CNN
 F 1 "ProMicro" H 13000 5281 60  0000 C CNN
-F 2 "kbd_tororo:ProMicro_v2_back" H 13100 3300 60  0001 C CNN
+F 2 "kbd_tororo:ProMicro_v2_back_right" H 13100 3300 60  0001 C CNN
 F 3 "" H 13100 3300 60  0000 C CNN
 	1    13000 4350
 	1    0    0    -1  

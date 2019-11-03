@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source /Users/toshifumi/Repositories/tororo_keyboard/KiCad/TororoKeyboardRightKiCad/TororoKeyboardRightKiCad.sch)
-    (date "2019年11月03日 日曜日 02:50:49")
+    (date "2019年11月03日 日曜日 15:57:14")
     (tool "Eeschema (5.1.2-1)-1")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -501,7 +501,7 @@
       (tstamp 5DCA8F05))
     (comp (ref U1)
       (value ProMicro)
-      (footprint kbd_tororo:ProMicro_v2_back)
+      (footprint kbd_tororo:ProMicro_v2_back_right)
       (libsource (lib kbd) (part ProMicro) (description ""))
       (sheetpath (names /) (tstamps /))
       (tstamp 5DB6E93A))
